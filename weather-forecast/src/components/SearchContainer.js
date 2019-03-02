@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Autocomplete from "react-autocomplete";
-import cities from "../../src/city.json";
-import Header from "./Header";
-import axios from "../../src/utils/axios";
 import { addFavCity, requestFavCityByName } from "../store/ducks/weather";
-import getWeatherByName from "../services/getWeatherByName";
-class MainContainer extends Component {
+
+class SearchContainer extends Component {
   constructor() {
     super();
 
+    this.state = { value: "" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -18,23 +15,29 @@ class MainContainer extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-
     this.props.requestFavCityByName(this.state.value);
   }
   render() {
     return (
-      <div>
-        <Header />
-        <h6>Main Container</h6>
-      </div>
+      <form className="-mr-1 flex flex-row items-stretch" onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          className="bg-grey-light rounded-l text-base py-2 px-3"
+          placeholder="Search for a city..."
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <button type="submit" className="bg-indigo-darker text-white text-sm rounded-r py-2 px-3">
+          Search
+        </button>
+      </form>
     );
   }
 }
 const mapStateToProps = state => {
   return {};
 };
-
 export default connect(
   mapStateToProps,
   { addFavCity, requestFavCityByName }
-)(MainContainer);
+)(SearchContainer);

@@ -8,6 +8,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use((config) => {
   config.params.appid = API_KEY
+  config.params.units = 'metric'
   return config
 })
 

@@ -1,11 +1,16 @@
-import React from "react"
-import '../styles/header.css'
-const Header = (props) => {
-    return (
-        <div className="navbar">
-            <h6 className="title">Weather Forecast App</h6>
-        </div>
-    )
-}
+import React from "react";
+import "../styles/header.css";
+import SearchContainer from "./SearchContainer";
 
-export default Header
+const Header = props => {
+  return (
+    <header className="bg-indigo-light text-white">
+      <div className="container mx-auto p-4 flex flex-row justify-between items-center">
+        <div className="font-black text-xl">Weather App</div>
+        <SearchContainer />
+      </div>
+    </header>
+  );
+};
+
+export default Header;
