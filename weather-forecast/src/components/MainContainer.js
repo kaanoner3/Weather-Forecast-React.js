@@ -11,12 +11,10 @@ class MainContainer extends Component {
   }
 
   render() {
-    console.log('main container',this.props)
     return (
       <div>
         <Header />
-        <FavCities />
-        <h6>Main Container</h6>
+        <FavCities />      
       </div>
     );
   }

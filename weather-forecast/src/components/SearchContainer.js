@@ -16,6 +16,7 @@ class SearchContainer extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.requestFavCityByName(this.state.value);
+    this.setState({value: ''})
   }
   render() {
     return (
