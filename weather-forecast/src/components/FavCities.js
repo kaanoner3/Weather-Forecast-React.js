@@ -137,7 +137,7 @@ class FavCities extends Component {
           </div>
 
           <div className="p-4">
-            <p className="text text2xl">Current Cities</p>
+            <p className="text">Current Cities</p>
             <div className="flex flex-col">
               {this.props.favCities.map((item, index) => {
                 return (
@@ -152,17 +152,11 @@ class FavCities extends Component {
               })}
             </div>
           </div>
-
-          <div className="p-4 border-t h-12 flex flex-row justify-between">
-            <div>sol</div>
-            <div>sağ</div>
-          </div>
         </div>
       </div>
     );
   }
   render() {
-    console.log("render fav cities");
     return (
       <div className="container mx-auto mt-2 p-4">
         <div className="flex flex-row -mx-4">{this.renderCities()}</div>

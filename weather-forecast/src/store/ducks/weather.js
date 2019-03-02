@@ -11,23 +11,37 @@ const initialState = {
 
 export default function(state = initialState, action = {}) {
   switch (action.type) {
-    case ADD_FAV_CITY:
-      const _fav_cities = [...state.favCities];
-      var isExist = _fav_cities.findIndex(city => action.data.id === city.id);
+    case ADD_FAV_CITY: {
+      const _favCities = [...state.favCities];
+      var isExist = _favCities.findIndex(city => action.data.id === city.id);
       if (isExist === -1) {
-        _fav_cities.push(action.data);
+        _favCities.push(action.data);
       }
 
-      return { ...state, favCities: _fav_cities, loading: false };
-
-    case REQUEST_FAV_CITY:
+      return { ...state, favCities: _favCities, loading: false };
+    }
+    case REQUEST_FAV_CITY: {
       return { ...state, loading: true };
-
-    case MODAL_ACTION:
+    }
+    case MODAL_ACTION: {
       return { ...state, showModal: action.data, newCity: action.newCity };
+    }
+    case CHANGE_FAV_CITY: {
+      const _favCities = [...state.favCities];
 
-    case CHANGE_FAV_CITY:
-      return { ...state };
+      var index = _favCities.findIndex(city => action.oldCityId === city.id);
+      if (index !== -1) {
+        _favCities[index] = state.newCity;
+      }
+
+      return {
+        ...state,
+        favCities: _favCities,
+        showModal: false,
+        loading: false
+      };
+    }
+
     default:
       return { ...state };
   }
