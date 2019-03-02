@@ -8,7 +8,6 @@ export default function getWeatherByName(name) {
       }
     })
     .then(resp => {
-      console.log('servis iciii', resp)
       return resp;
     })
     .catch(err => {

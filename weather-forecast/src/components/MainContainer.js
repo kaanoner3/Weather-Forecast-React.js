@@ -1,37 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Autocomplete from "react-autocomplete";
-import cities from "../../src/city.json";
 import Header from "./Header";
-import axios from "../../src/utils/axios";
 import { addFavCity, requestFavCityByName } from "../store/ducks/weather";
-import getWeatherByName from "../services/getWeatherByName";
+import FavCities from "./FavCities"
+
 class MainContainer extends Component {
   constructor() {
     super();
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-  handleSubmit(event) {
-    event.preventDefault();
 
-    this.props.requestFavCityByName(this.state.value);
-  }
   render() {
+    console.log('main container',this.props)
     return (
       <div>
         <Header />
+        <FavCities />
         <h6>Main Container</h6>
       </div>
     );
   }
 }
 const mapStateToProps = state => {
-  return {};
+  return {
+    favCities: state.weatherReducer.favCities
+  };
 };
 
 export default connect(
