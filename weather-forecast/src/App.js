@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import "./App.css"
+import {Provider} from "react-redux"
 import MainContainer from "./components/MainContainer";
-
-console.log(MainContainer)
+import store from "./store/index";
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <MainContainer />
+        <Provider store={store}>
+          <MainContainer />
+        </Provider>
       </div>
     );
   }
