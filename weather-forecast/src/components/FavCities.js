@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
-import { setModalStatus, changeFavCity } from "../store/ducks/weather";
+import {
+  setModalStatus,
+  changeFavCity,
+  deleteFavCity
+} from "../store/ducks/weather";
 
 class FavCities extends Component {
   constructor() {
@@ -21,6 +25,7 @@ class FavCities extends Component {
           <div className="relative rounded shadow-md bg-indigo-lightest mx-4 p-4 h-full flex flex-col">
             <button
               type="button"
+              onClick={() => this.props.deleteFavCity(item.id)}
               className="absolute pin-r pin-t mt-4 mr-4 text-grey hover:text-red-dark"
             >
               <svg
@@ -176,5 +181,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setModalStatus, changeFavCity }
+  { setModalStatus, changeFavCity, deleteFavCity }
 )(FavCities);
