@@ -1,27 +1,23 @@
-import { applyMiddleware, createStore } from "redux"
-import logger from "redux-logger"
-import createSagaMiddleware from "redux-saga"
-import reducers from "./ducks"
-import sagas from "./saga"
-import { persistStore, autoRehydrate } from "redux-persist"
-//console.log('store saga', sagas)
-const sagaMiddleware = createSagaMiddleware()
+import { applyMiddleware, createStore, compose } from "redux";
+import logger from "redux-logger";
+import createSagaMiddleware from "redux-saga";
+import reducers from "./ducks";
+import sagas from "./saga";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-const store =  createStore(reducers, applyMiddleware(logger, sagaMiddleware))
-sagaMiddleware.run(sagas)
+const sagaMiddleware = createSagaMiddleware();
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["weatherReducer"]
+};
 
+const persistedReducer = persistReducer(persistConfig, reducers);
 
-// Create the glorious store instance.
-//const store = createStore(reducers, applyMiddleware(logger, sagaMiddleware), autoRehydrate())
-//sagaMiddleware.run(sagas)
+let store = createStore(persistedReducer, compose(applyMiddleware(logger, sagaMiddleware)));
 
-//const persist = persistStore(store, { blacklist: ["app"], storage: AsyncStorage }, onRehydrate)
+let persistor = persistStore(store);
+sagaMiddleware.run(sagas);
 
-// Hot reloading thing
-/*if (module.hot) {
-   module.hot.accept(() => {
-      store.replaceReducer(reducers)
-   })
-}*/
-
-export default store
+export { store, persistor };

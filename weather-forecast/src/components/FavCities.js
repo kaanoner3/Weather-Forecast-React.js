@@ -21,7 +21,8 @@ class FavCities extends Component {
   renderCities() {
     return this.props.favCities.map((item, index) => {
       return (
-        <div key={item.id} className="w-1/5">
+        
+        <button key={item.id} className="w-1/5" onClick={()=>{this.props.history.push('city/'+item.id)}}>
           <div className="relative rounded shadow-md bg-indigo-lightest mx-4 p-4 h-full flex flex-col">
             <button
               type="button"
@@ -94,7 +95,7 @@ class FavCities extends Component {
               1h ago
             </p>
           </div>
-        </div>
+        </button>
       );
     });
   }
@@ -162,6 +163,7 @@ class FavCities extends Component {
     );
   }
   render() {
+    console.log(this.props)
     return (
       <div className="container mx-auto mt-2 p-4">
         <div className="flex flex-row -mx-4">{this.renderCities()}</div>

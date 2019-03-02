@@ -14,7 +14,7 @@ class MainContainer extends Component {
     return (
       <div>
         <Header />
-        <FavCities />      
+        <FavCities history={this.props.history} />      
       </div>
     );
   }

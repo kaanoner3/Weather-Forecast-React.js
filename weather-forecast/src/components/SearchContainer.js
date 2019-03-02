@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addFavCity, requestFavCityByName } from "../store/ducks/weather";
+import { Alert } from "react-bootstrap";
 
 class SearchContainer extends Component {
   constructor() {
@@ -16,11 +17,14 @@ class SearchContainer extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.requestFavCityByName(this.state.value);
-    this.setState({value: ''})
+    this.setState({ value: "" });
   }
   render() {
     return (
-      <form className="-mr-1 flex flex-row items-stretch" onSubmit={this.handleSubmit}>
+      <form
+        className="-mr-1 flex flex-row items-stretch"
+        onSubmit={this.handleSubmit}
+      >
         <input
           type="text"
           className="bg-grey-light rounded-l text-base py-2 px-3"
@@ -28,7 +32,10 @@ class SearchContainer extends Component {
           value={this.state.value}
           onChange={this.handleChange}
         />
-        <button type="submit" className="bg-indigo-darker text-white text-sm rounded-r py-2 px-3">
+        <button
+          type="submit"
+          className="bg-indigo-darker text-white text-sm rounded-r py-2 px-3"
+        >
           Search
         </button>
       </form>
@@ -36,7 +43,9 @@ class SearchContainer extends Component {
   }
 }
 const mapStateToProps = state => {
-  return {};
+  return {
+    favCities: state.weatherReducer.favCities
+  };
 };
 export default connect(
   mapStateToProps,

@@ -1,14 +1,11 @@
 import {
   call,
   put,
-  takeEvery,
-  takeLatest,
-  all,
   take
 } from "redux-saga/effects";
 import getWeatherByName from "../../services/getWeatherByName";
 import { addFavCity, REQUEST_FAV_CITY, setModalStatus } from "../ducks/weather";
-import store from "../index";
+import {store} from "../index";
 
 export function* weather() {
   while (true) {
@@ -29,11 +26,4 @@ export function* weather() {
   }
 }
 
-export function* changeFavCity() {
-  while (true) {
-    try {
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+
