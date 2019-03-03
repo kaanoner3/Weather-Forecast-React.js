@@ -1,7 +1,4 @@
-import getCityDetail from "./getCityDetail"
-import getWeatherByName from "./getWeatherByName"
+import getCityDetail from "./getCityDetail";
+import getWeatherByName from "./getWeatherByName";
 
-export {
-    getCityDetail,
-    getWeatherByName
-}
+export { getCityDetail, getWeatherByName };

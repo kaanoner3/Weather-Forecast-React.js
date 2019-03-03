@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import {
   setModalStatus,
   changeFavCity,
@@ -14,7 +14,7 @@ class FavCities extends Component {
     this.renderCities = this.renderCities.bind(this);
     this.renderModal = this.renderModal.bind(this);
   }
-  
+
   render() {
     return (
       <div className="container mx-auto mt-2 p-4">
@@ -24,13 +24,21 @@ class FavCities extends Component {
     );
   }
   renderWeatherIcon(icon) {
-    return <img alt="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} />;
+    return (
+      <img
+        alt="weather-icon"
+        src={`http://openweathermap.org/img/w/${icon}.png`}
+      />
+    );
   }
   renderCities() {
     return this.props.favCities.map((item, index) => {
       return (
-        
-        <Link key={item.id} className="w-1/5 no-underline" to={{pathname:'city/'+item.id, state:{cityName:item.name}}}>
+        <Link
+          key={item.id}
+          className="w-1/5 no-underline"
+          to={{ pathname: "city/" + item.id, state: { cityName: item.name } }}
+        >
           <div className="relative rounded shadow-md bg-indigo-lightest mx-4 p-4 h-full flex flex-col">
             <button
               type="button"

@@ -11,7 +11,7 @@ import { getCityDetail, getWeatherByName } from "../../services/index";
 export function* weather() {
   while (true) {
     try {
-      console.log(getWeatherByName)
+      console.log(getWeatherByName);
       const { name } = yield take(REQUEST_FAV_CITY);
       const response = yield call(getWeatherByName, name);
       const currentCities = store.getState().weatherReducer.favCities;
@@ -33,7 +33,8 @@ export function* cityDetail() {
     try {
       const { cityId } = yield take(REQUEST_CITY_DETAIL);
       const lastRequestTime = store.getState().cityDetail.lastRequestTime;
-      if ( //for unneccesary requests
+      if (
+        //for unneccesary requests
         lastRequestTime + 3600 * 1000 > Date.now() &&
         store.getState().cityDetail.cityDetail !== null
       ) {

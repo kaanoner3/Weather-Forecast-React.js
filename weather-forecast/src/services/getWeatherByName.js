@@ -14,6 +14,4 @@ export default function getWeatherByName(name) {
       console.log(err);
       return err;
     });
-
-  
 }
