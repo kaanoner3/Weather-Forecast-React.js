@@ -24,7 +24,9 @@ class CityDetail extends Component {
           5-day forecast for {this.props.location.state.cityName}
         </h1>
 
-        <div className="flex flex-row mt-4">{this.renderDates()}</div>
+        <div className="flex flex-row mt-4">
+          {this.props.loading ? null : this.renderDates()}
+        </div>
 
         {this.props.loading ? null : this.renderTable()}
       </main>

@@ -1,5 +1,10 @@
 import { call, put, take } from "redux-saga/effects";
-import { addFavCity, REQUEST_FAV_CITY, setModalStatus } from "../ducks/weather";
+import {
+  addFavCity,
+  REQUEST_FAV_CITY,
+  setModalStatus,
+  handleError
+} from "../ducks/weather";
 import {
   setCityDetail,
   REQUEST_CITY_DETAIL,
@@ -24,6 +29,7 @@ export function* weather() {
       }
     } catch (error) {
       console.log(error);
+      yield put(handleError(true));
     }
   }
 }

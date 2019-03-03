@@ -3,11 +3,13 @@ export const REQUEST_FAV_CITY = "weather/REQEUST_FAV_CITY";
 export const MODAL_ACTION = "weather/MODAL_ACTION";
 export const CHANGE_FAV_CITY = "weather/CHANGE_FAV_CITY";
 export const DELETE_FAV_CITY = "weather/DELETE_FAV_CITY";
+export const ERROR = "weather/ERROR";
 
 const initialState = {
   favCities: [],
   loading: false,
-  showModal: false
+  showModal: false,
+  error: false
 };
 
 export default function(state = initialState, action = {}) {
@@ -50,7 +52,9 @@ export default function(state = initialState, action = {}) {
       }
       return { ...state, favCities: _favCities };
     }
-
+    case ERROR: {
+      return { ...state, error: action.error };
+    }
     default:
       return state;
   }
@@ -74,4 +78,8 @@ export function changeFavCity(oldCityId) {
 
 export function deleteFavCity(cityId) {
   return { type: DELETE_FAV_CITY, cityId };
+}
+
+export function handleError(error) {
+  return { type: ERROR, error };
 }
