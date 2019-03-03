@@ -4,6 +4,7 @@ export const MODAL_ACTION = "weather/MODAL_ACTION";
 export const CHANGE_FAV_CITY = "weather/CHANGE_FAV_CITY";
 export const DELETE_FAV_CITY = "weather/DELETE_FAV_CITY";
 
+
 const initialState = {
   favCities: [],
   loading: false,
@@ -50,8 +51,9 @@ export default function(state = initialState, action = {}) {
       }
       return { ...state, favCities: _favCities };
     }
+    
     default:
-      return { ...state };
+      return state;
   }
 }
 

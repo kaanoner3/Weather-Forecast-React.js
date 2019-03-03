@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Modal, Button } from "react-bootstrap";
+import {Link} from "react-router-dom"
 import {
   setModalStatus,
   changeFavCity,
@@ -22,7 +22,7 @@ class FavCities extends Component {
     return this.props.favCities.map((item, index) => {
       return (
         
-        <button key={item.id} className="w-1/5" onClick={()=>{this.props.history.push('city/'+item.id)}}>
+        <Link key={item.id} className="w-1/5 no-underline" to={'city/'+item.id}>
           <div className="relative rounded shadow-md bg-indigo-lightest mx-4 p-4 h-full flex flex-col">
             <button
               type="button"
@@ -95,7 +95,7 @@ class FavCities extends Component {
               1h ago
             </p>
           </div>
-        </button>
+        </Link>
       );
     });
   }

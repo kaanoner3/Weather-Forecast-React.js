@@ -2,17 +2,22 @@ import React, { Component } from "react";
 import "./App.css";
 import { Provider } from "react-redux";
 import MainContainer from "./components/MainContainer";
-import { store, persistor } from "./store/index";
+import configureStore from "./store/index";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import CityDetail from "./components/CityDetail";
 
 class App extends Component {
+  constructor() {
+    super()
+    this.store = configureStore()
+  
+  }
   render() {
     return (
       <div className="App">
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
+        <Provider store={this.store.store}>
+          <PersistGate persistor={this.store.persistor}>
             <Router>
               <div>
               <Route path="/" exact component={MainContainer} />

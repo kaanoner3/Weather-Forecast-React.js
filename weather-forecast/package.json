@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "localforage": "^1.7.3",
     "react": "^16.8.3",
     "react-autocomplete": "^1.8.1",
     "react-bootstrap": "^1.0.0-beta.5",
@@ -13,7 +14,7 @@
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-persist": "^5.10.0",
+    "redux-persist": "^5.6.12",
     "redux-saga": "^1.0.2"
   },
   "scripts": {

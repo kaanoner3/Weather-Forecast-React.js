@@ -10,14 +10,19 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["weatherReducer"]
+  debug: true,
+  blacklist:['cityDetail']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 let store = createStore(persistedReducer, compose(applyMiddleware(logger, sagaMiddleware)));
 
-let persistor = persistStore(store);
+let persistor = persistStore(store, null, () =>{console.log('persiststore',store.getState())});
 sagaMiddleware.run(sagas);
 
-export { store, persistor };
+const configureStore = () => {
+  return {store, persistor}
+}
+
+export default configureStore
