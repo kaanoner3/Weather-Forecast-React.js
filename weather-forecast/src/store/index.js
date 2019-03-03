@@ -11,14 +11,14 @@ const persistConfig = {
   key: "root",
   storage,
   debug: true,
-  blacklist:['cityDetail']
+  //blacklist:['cityDetail']
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-let store = createStore(persistedReducer, compose(applyMiddleware(logger, sagaMiddleware)));
+export const store = createStore(persistedReducer, compose(applyMiddleware(logger, sagaMiddleware)));
 
-let persistor = persistStore(store, null, () =>{console.log('persiststore',store.getState())});
+let persistor = persistStore(store, null, () =>{});
 sagaMiddleware.run(sagas);
 
 const configureStore = () => {
