@@ -24,7 +24,7 @@ export default function(state = initialState, action = {}) {
       return { ...state, favCities: _favCities, loading: false };
     }
     case REQUEST_FAV_CITY: {
-      return { ...state, loading: true };
+      return { ...state, loading: true, error: false };
     }
     case MODAL_ACTION: {
       return { ...state, showModal: action.data, newCity: action.newCity };

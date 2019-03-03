@@ -16,7 +16,6 @@ import { getCityDetail, getWeatherByName } from "../../services/index";
 export function* weather() {
   while (true) {
     try {
-      console.log(getWeatherByName);
       const { name } = yield take(REQUEST_FAV_CITY);
       const response = yield call(getWeatherByName, name);
       const currentCities = store.getState().weatherReducer.favCities;
@@ -28,7 +27,6 @@ export function* weather() {
         yield put(addFavCity(response.data));
       }
     } catch (error) {
-      console.log(error);
       yield put(handleError(true));
     }
   }

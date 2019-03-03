@@ -18,20 +18,22 @@ class FavCities extends Component {
   }
 
   render() {
-    console.log(this.props.error);
-
     return (
       <div className="container mx-auto mt-2 p-4">
-        {this.renderError()}
         <div className="flex flex-row -mx-4">{this.renderCities()}</div>
         {this.renderModal()}
-        <Simplert
-          showSimplert={this.props.error}
-          //type={this.state.typeAlert}
-          title={"City Not Found"}
-          message={"There is no city with the name you entered"}
-        />
+        {this.renderError()}
       </div>
+    );
+  }
+  renderError() {
+    return (
+      <Simplert
+        showSimplert={this.props.error}
+        //type={this.state.typeAlert}
+        title={"City Not Found"}
+        message={"There is no city with the name you entered"}
+      />
     );
   }
   renderWeatherIcon(icon) {
@@ -42,11 +44,9 @@ class FavCities extends Component {
       />
     );
   }
-  renderError() {
-    if (this.props.error) {
-    }
-  }
+
   renderCities() {
+    console.log("renderCities", this.props.favCities);
     if (this.props.favCities.length > 0) {
       return this.props.favCities.map((item, index) => {
         return (
