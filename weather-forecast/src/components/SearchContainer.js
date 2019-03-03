@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addFavCity, requestFavCityByName } from "../store/ducks/weather";
-import { Alert } from "react-bootstrap";
 
 class SearchContainer extends Component {
   constructor() {
@@ -11,14 +10,18 @@ class SearchContainer extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
+
   handleSubmit(event) {
     event.preventDefault();
-    this.props.requestFavCityByName(this.state.value);
+    const { value } = this.state;
+    this.props.requestFavCityByName(value);
     this.setState({ value: "" });
   }
+
   render() {
     return (
       <form
@@ -42,6 +45,7 @@ class SearchContainer extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     favCities: state.weatherReducer.favCities

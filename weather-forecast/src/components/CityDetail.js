@@ -139,7 +139,7 @@ class CityDetail extends Component {
   }
 
   renderWeatherIcon(icon) {
-    return <img src={`http://openweathermap.org/img/w/${icon}.png`} />;
+    return <img alt="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} />;
   }
 }
 const mapStateToProps = state => {

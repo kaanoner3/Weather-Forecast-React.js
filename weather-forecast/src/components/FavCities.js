@@ -16,7 +16,6 @@ class FavCities extends Component {
   }
   
   render() {
-    console.log(this.props)
     return (
       <div className="container mx-auto mt-2 p-4">
         <div className="flex flex-row -mx-4">{this.renderCities()}</div>

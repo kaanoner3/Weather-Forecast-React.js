@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/header.css";
 import SearchContainer from "./SearchContainer";
 
-const Header = props => {
+const Header = () => {
   return (
     <header className="bg-indigo-light text-white">
       <div className="container mx-auto p-4 flex flex-row justify-between items-center">
