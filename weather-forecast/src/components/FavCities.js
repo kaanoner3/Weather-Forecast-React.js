@@ -14,15 +14,24 @@ class FavCities extends Component {
     this.renderCities = this.renderCities.bind(this);
     this.renderModal = this.renderModal.bind(this);
   }
-  renderWeatherIcon(icon) {
-    return <img src={`http://openweathermap.org/img/w/${icon}.png`} />;
+  
+  render() {
+    console.log(this.props)
+    return (
+      <div className="container mx-auto mt-2 p-4">
+        <div className="flex flex-row -mx-4">{this.renderCities()}</div>
+        {this.renderModal()}
+      </div>
+    );
   }
-
+  renderWeatherIcon(icon) {
+    return <img alt="weather-icon" src={`http://openweathermap.org/img/w/${icon}.png`} />;
+  }
   renderCities() {
     return this.props.favCities.map((item, index) => {
       return (
         
-        <Link key={item.id} className="w-1/5 no-underline" to={'city/'+item.id}>
+        <Link key={item.id} className="w-1/5 no-underline" to={{pathname:'city/'+item.id, state:{cityName:item.name}}}>
           <div className="relative rounded shadow-md bg-indigo-lightest mx-4 p-4 h-full flex flex-col">
             <button
               type="button"
@@ -159,15 +168,6 @@ class FavCities extends Component {
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
-  render() {
-    console.log(this.props)
-    return (
-      <div className="container mx-auto mt-2 p-4">
-        <div className="flex flex-row -mx-4">{this.renderCities()}</div>
-        {this.renderModal()}
       </div>
     );
   }

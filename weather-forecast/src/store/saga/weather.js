@@ -1,5 +1,4 @@
 import { call, put, take } from "redux-saga/effects";
-import getWeatherByName from "../../services/getWeatherByName";
 import { addFavCity, REQUEST_FAV_CITY, setModalStatus } from "../ducks/weather";
 import {
   setCityDetail,
@@ -7,11 +6,12 @@ import {
   setRequestTime
 } from "../ducks/cityDetail";
 import { store } from "../index";
-import getCityDetail from "../../services/getCityDetail";
+import { getCityDetail, getWeatherByName } from "../../services/index";
 
 export function* weather() {
   while (true) {
     try {
+      console.log(getWeatherByName)
       const { name } = yield take(REQUEST_FAV_CITY);
       const response = yield call(getWeatherByName, name);
       const currentCities = store.getState().weatherReducer.favCities;
@@ -33,13 +33,18 @@ export function* cityDetail() {
     try {
       const { cityId } = yield take(REQUEST_CITY_DETAIL);
       const lastRequestTime = store.getState().cityDetail.lastRequestTime;
-      if (lastRequestTime + 3600 * 1000 > Date.now() && store.getState().cityDetail.cityDetail !== null) {
-        console.log('AQQQQQ')
+      if ( //for unneccesary requests
+        lastRequestTime + 3600 * 1000 > Date.now() &&
+        store.getState().cityDetail.cityDetail !== null
+      ) {
         yield put(
-          setCityDetail(store.getState().cityDetail.cityDetail, store.getState().cityDetail.city)
+          setCityDetail(
+            store.getState().cityDetail.cityDetail,
+            store.getState().cityDetail.city
+          )
         );
       } else {
-        yield put(setRequestTime(Date.now()))
+        yield put(setRequestTime(Date.now()));
         const response = yield call(getCityDetail, cityId);
         var splittedArray = splitToDay(response.data.list, 8);
         yield put(setCityDetail(splittedArray, response.data.city));
@@ -53,12 +58,9 @@ export function* cityDetail() {
 function splitToDay(array, size) {
   var results = [];
   var sliceIndex = 0;
-  //console.log('neymis bakalım', array)
 
   array.reduce((pv, cv, index, arr) => {
-    //console.log('funck ici', cv.dt_txt.substring(0,10), pv)
     if (cv.dt_txt.substring(0, 10) !== pv && index !== 1) {
-      //console.log('indeeeex', index)
       results.push(arr.slice(sliceIndex, index));
       sliceIndex = index;
       if (index > 32) {
@@ -67,6 +69,6 @@ function splitToDay(array, size) {
     }
     return cv.dt_txt.substring(0, 10);
   });
-  //console.log('resuuuult neymis bakalım', results)
+
   return results;
 }

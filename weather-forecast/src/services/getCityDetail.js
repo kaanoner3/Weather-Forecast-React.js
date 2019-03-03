@@ -14,6 +14,4 @@ export default function getCityDetail(cityId) {
       console.log(err);
       return err;
     });
-
-  
 }
